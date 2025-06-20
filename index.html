@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Section</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <section>
+    <div class="prod-top-bar">
+      <h3 class="prod-category">Falltech Anchors and Lifelines</h3>
+      <div class="view-toggle">
+        <button class="view-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-line">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+           Line</button>
+        <button class="view-btn active">Grid
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="icon-grid">
+            <rect x="2" y="2" width="5" height="5" rx="1" />
+            <rect x="9.5" y="2" width="5" height="5" rx="1" />
+            <rect x="17" y="2" width="5" height="5" rx="1" />
+
+            <rect x="2" y="9.5" width="5" height="5" rx="1" />
+            <rect x="9.5" y="9.5" width="5" height="5" rx="1" />
+            <rect x="17" y="9.5" width="5" height="5" rx="1" />
+
+            <rect x="2" y="17" width="5" height="5" rx="1" />
+            <rect x="9.5" y="17" width="5" height="5" rx="1" />
+            <rect x="17" y="17" width="5" height="5" rx="1" />
+          </svg>
+        </button>
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="Search something...">
+        <button>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="prod-list" class="grid-view"></div>
+    <div id="prod-pagination" class="pagination"></div>
+  </section>
+
+</body>
+</html>
