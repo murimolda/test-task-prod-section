@@ -75,7 +75,11 @@ $(function () {
           </a>
           <div class="product-info">
             <div class="product-brand">${product.brand}</div>
-            <div class="product-name">${product.name}</div>
+            <div class="product-name">
+              <a href="${product.link}" target="_blank">
+                ${product.name}
+              </a>
+            </div>
             <div class="product-price">${priceHtml}</div>
             <div class="action-buttons">
               <button class="button cart-button">Add to Cart</button>

@@ -137,6 +137,7 @@ body {
   margin: 0 auto;
   padding-top: 160px;
   padding-bottom: 75px;
+  padding: 160px 20px 75px;
 }
 
 .product-top-bar {
@@ -278,6 +279,11 @@ body {
   height: calc(1.1em * 3);
   overflow: hidden;
   margin-bottom: 10px;
+}
+
+.product-name a {
+  text-decoration: none;
+  color: var(--main-color);
 }
 
 .product-price {
