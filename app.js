@@ -31,6 +31,17 @@ $(function () {
     const visible = filteredProducts.slice(start, end);
     const $list = $('#product-list').empty();
 
+  if (filteredProducts.length === 0) {
+    const query = $('#product-search').val().trim();
+    $('#no-results')
+      .text(`No results for "${query}"`)
+      .fadeIn();
+      $('#product-pagination').hide();
+    return;
+  } else {
+    $('#no-results').hide();
+  }
+
     $.each(visible, function (i, product) {
       let priceHtml = '';
       if (product.new_price) {
@@ -126,7 +137,7 @@ $(function () {
 
   //Switching grid and linear view for product cards container
   $('#grid-view').click(function() {
-    $('#product-list').removeClass("list-view").addClass("grid-view");
+    $('#product-list').removeClass("line-view").addClass("grid-view");
     $('#line-view').toggleClass("active");
     $('#grid-view').toggleClass("active");
   });
@@ -137,6 +148,44 @@ $(function () {
     $('#grid-view').toggleClass("active");
   });
 
+  // Search function
+  function searchProducts() {
+    const query = $('#product-search').val().trim().toLowerCase();
+    if (query === '') {
+      return;
+    }
+    filteredProducts = allProducts.filter(product => {
+      const name = product.name?.toLowerCase() || '';
+      const brand = product.brand?.toLowerCase() || '';
+      return name.includes(query) || brand.includes(query);
+    });
+    currentPage = 1;
+    makePage();
+    $('#clear-search').show();
+  }
+
+  $('#search-button').on('click', function () {
+    searchProducts();
+  });
+
+  $('#product-search').on('keypress', function (e) {
+    if (e.which === 13) {
+      const query = $(this).val().trim();
+      if (query !== '') {
+        searchProducts();
+      }
+    }
+  });
+
+  // Clear search function
+  $('#clear-search').on('click', function () {
+    $('#product-search').val('');
+    filteredProducts = [...allProducts];
+    currentPage = 1;
+    makePage();
+    $(this).hide();
+    $('#product-pagination').show();
+  });
 
 
 });

@@ -37,8 +37,8 @@
         </button>
       </div>
       <div class="search-box">
-        <input type="text" placeholder="Search something...">
-        <button>
+        <input id="product-search" type="text" placeholder="Search something...">
+        <button id="search-button">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -46,7 +46,9 @@
         </button>
       </div>
     </div>
+    <button id="clear-search" class="clear-search">Clear Search</button>
     <div id="product-list" class="grid-view"></div>
+    <div id="no-results" class="no-results"></div>
     <div id="product-pagination" class="pagination"></div>
   </section>
 </body>
