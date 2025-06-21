@@ -445,6 +445,10 @@ body {
   background: var(--active-bg);
 }
 
+.pagination-dots {
+  pointer-events: none;
+}
+
 /* NO SEARCH RESULT BLOCK */
 .no-results {
   display: none;
@@ -529,6 +533,10 @@ body {
     grid-template-columns: repeat(1, 100%);
   }
 
+  .product-card {
+    min-height: 480px;
+  }
+
   .product-link {
     display: block;
     width: 320px;
@@ -578,6 +586,11 @@ body {
     min-width: auto;
   }
 
+  .product-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   .product-link {
     display: block;
     width: 220px;
@@ -588,6 +601,11 @@ body {
     width: 220px;
     height: auto;
   }
+
+  .action-buttons .button {
+    font-size: 17px;
+  }
+
   .pagination {
     height: 38px;
     border-radius: 4px;

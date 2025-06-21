@@ -16,7 +16,8 @@ $(function () {
 
   // Getting product data from json file
   function loadProducts() {
-    $.getJSON('https://raw.githubusercontent.com/murimolda/product-data/refs/heads/main/products.json', function (data) {
+    // $.getJSON('https://raw.githubusercontent.com/murimolda/product-data/refs/heads/main/products.json', function (data) {
+    $.getJSON('https://raw.githubusercontent.com/murimolda/product-data/refs/heads/main/products-big.json', function (data) {
       allProducts = data.products;
       filteredProducts = [...allProducts];
       makePage()
@@ -160,7 +161,7 @@ $(function () {
   }
 
   function createDots() {
-    return $('<span class="pagination-button pagination-dots">...</span>');
+    return $('<button class="pagination-button pagination-dots" disabled>...</button>');
   }
 
   if (totalPages <= 6) {
