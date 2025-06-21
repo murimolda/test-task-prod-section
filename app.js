@@ -31,6 +31,17 @@ $(function () {
     const visible = filteredProducts.slice(start, end);
     const $list = $('#product-list').empty();
 
+  if (filteredProducts.length === 0) {
+    const query = $('#product-search').val().trim();
+    $('#no-results')
+      .text(`No results for "${query}"`)
+      .fadeIn();
+      $('#product-pagination').hide();
+    return;
+  } else {
+    $('#no-results').hide();
+  }
+
     $.each(visible, function (i, product) {
       let priceHtml = '';
       if (product.new_price) {
@@ -62,12 +73,18 @@ $(function () {
           <a href="${product.link}" target="_blank" class="product-link">
             <img src="prod-img.jpg" alt="${product.name}">
           </a>
-          <div class="product-brand">${product.brand}</div>
-          <div class="product-name">${product.name}</div>
-          <div class="product-price">${priceHtml}</div>
-          <div class="action-buttons">
-            <button class="button cart-button">Add to Cart</button>
-            <button class="button quick-button">Quick View</button>
+          <div class="product-info">
+            <div class="product-brand">${product.brand}</div>
+            <div class="product-name">
+              <a href="${product.link}" target="_blank">
+                ${product.name}
+              </a>
+            </div>
+            <div class="product-price">${priceHtml}</div>
+            <div class="action-buttons">
+              <button class="button cart-button">Add to Cart</button>
+              <button class="button quick-button">Quick View</button>
+            </div>
           </div>
           ${badge}
         </div>
@@ -124,17 +141,55 @@ $(function () {
 
   //Switching grid and linear view for product cards container
   $('#grid-view').click(function() {
-    $('#product-list').removeClass("list-view").addClass("grid-view");
-    $('#line-view').toggleClass(active);
-    $('#grid-view').toggleClass(active);
+    $('#product-list').removeClass("line-view").addClass("grid-view");
+    $('#line-view').toggleClass("active");
+    $('#grid-view').toggleClass("active");
   });
 
   $('#line-view').click(function() {
-    $('#product-list').removeClass("grid-view").addClass("list-view");
-    $('#line-view').toggleClass(className);
-    $('#grid-view').toggleClass(className);
+    $('#product-list').removeClass("grid-view").addClass("line-view");
+    $('#line-view').toggleClass("active");
+    $('#grid-view').toggleClass("active");
   });
 
+  // Search function
+  function searchProducts() {
+    const query = $('#product-search').val().trim().toLowerCase();
+    if (query === '') {
+      return;
+    }
+    filteredProducts = allProducts.filter(product => {
+      const name = product.name?.toLowerCase() || '';
+      const brand = product.brand?.toLowerCase() || '';
+      return name.includes(query) || brand.includes(query);
+    });
+    currentPage = 1;
+    makePage();
+    $('#clear-search').show();
+  }
+
+  $('#search-button').on('click', function () {
+    searchProducts();
+  });
+
+  $('#product-search').on('keypress', function (e) {
+    if (e.which === 13) {
+      const query = $(this).val().trim();
+      if (query !== '') {
+        searchProducts();
+      }
+    }
+  });
+
+  // Clear search function
+  $('#clear-search').on('click', function () {
+    $('#product-search').val('');
+    filteredProducts = [...allProducts];
+    currentPage = 1;
+    makePage();
+    $(this).hide();
+    $('#product-pagination').show();
+  });
 
 
 });
