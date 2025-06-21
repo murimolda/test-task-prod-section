@@ -407,7 +407,29 @@ body {
 
 /* PAGINATION */
 .pagination {
-  text-align: center;
+  width: max-content;
+  height: 46px;
+  border-radius: 4px;
+  background-color: var(--main-bg);
+  border: 2px solid var(--border-color);
+  margin: 0 auto;
+}
+
+.pagination-button {
+  width: 53px;
+  height: 42px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.pagination-button:not(:last-child) {
+  border-right: 2px solid var(--border-color);
+}
+
+.pagination-button.active {
+  background: var(--active-bg);
 }
 
 @media screen and (max-width: 1240px) {
