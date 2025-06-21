@@ -70,13 +70,13 @@ $(function () {
 
       const card = `
         <div class="product-card">
-          <a href="${product.link}" target="_blank" class="product-link">
+          <a href="https://${product.link}" target="_blank" class="product-link">
             <img src="prod-img.jpg" alt="${product.name}">
           </a>
           <div class="product-info">
             <div class="product-brand">${product.brand}</div>
             <div class="product-name">
-              <a href="${product.link}" target="_blank">
+              <a href="https://${product.link}" target="_blank">
                 ${product.name}
               </a>
             </div>
