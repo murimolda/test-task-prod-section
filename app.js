@@ -125,14 +125,14 @@ $(function () {
   //Switching grid and linear view for product cards container
   $('#grid-view').click(function() {
     $('#product-list').removeClass("list-view").addClass("grid-view");
-    $('#line-view').toggleClass(active);
-    $('#grid-view').toggleClass(active);
+    $('#line-view').toggleClass("active");
+    $('#grid-view').toggleClass("active");
   });
 
   $('#line-view').click(function() {
     $('#product-list').removeClass("grid-view").addClass("list-view");
-    $('#line-view').toggleClass(className);
-    $('#grid-view').toggleClass(className);
+    $('#line-view').toggleClass("active");
+    $('#grid-view').toggleClass("active");
   });
 
 

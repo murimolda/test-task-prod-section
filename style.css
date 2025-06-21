@@ -104,6 +104,7 @@ p {
   --main-color: #000;
   --main-bg: #ffffff;
   --active-bg: #00a9ce;
+  --active-color: #ffffff;
   --border-color: #b4b4b4;
   --old-price-color: #a1a1a1;
   --new-price-color: #00a9ce;
@@ -167,7 +168,8 @@ body {
 }
 .view-button {
   display: flex;
-  justify-content: start;
+  justify-content: center;
+  gap: 10px;
   align-items: center;
   width: 136px;
   height: 32px;
@@ -176,6 +178,14 @@ body {
   background: var(--main-bg);
   color: var(--main-color);
   font-size: 24px;
+  line-height: 49px;
+  font-weight: 500;
+  padding: 5px 10px;
+}
+
+.view-button.active {
+  color: var(--active-color);
+  background: var(--active-bg);
 }
 
 .icon-line {
