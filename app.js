@@ -62,12 +62,14 @@ $(function () {
           <a href="${product.link}" target="_blank" class="product-link">
             <img src="prod-img.jpg" alt="${product.name}">
           </a>
-          <div class="product-brand">${product.brand}</div>
-          <div class="product-name">${product.name}</div>
-          <div class="product-price">${priceHtml}</div>
-          <div class="action-buttons">
-            <button class="button cart-button">Add to Cart</button>
-            <button class="button quick-button">Quick View</button>
+          <div class="product-info">
+            <div class="product-brand">${product.brand}</div>
+            <div class="product-name">${product.name}</div>
+            <div class="product-price">${priceHtml}</div>
+            <div class="action-buttons">
+              <button class="button cart-button">Add to Cart</button>
+              <button class="button quick-button">Quick View</button>
+            </div>
           </div>
           ${badge}
         </div>
@@ -130,7 +132,7 @@ $(function () {
   });
 
   $('#line-view').click(function() {
-    $('#product-list').removeClass("grid-view").addClass("list-view");
+    $('#product-list').removeClass("grid-view").addClass("line-view");
     $('#line-view').toggleClass("active");
     $('#grid-view').toggleClass("active");
   });
