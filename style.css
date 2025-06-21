@@ -193,11 +193,10 @@ body {
   background: var(--active-bg);
 }
 
-.icon-line {
-}
-.active {
-}
+.icon-line,
 .icon-grid {
+  width: 24px;
+  height: 24px;
 }
 
 .search-box {
