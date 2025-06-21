@@ -1,7 +1,7 @@
 $(function () {
 
   function productsPerPage() {
-    return $(window).width() < 768 ? 6 : 8;
+    return $(window).width() < 1240 ? 6 : 8;
   }
 
   let allProducts = [];
@@ -25,27 +25,42 @@ $(function () {
     const start = (currentPage - 1) * perPage;
     const end = start + perPage;
     const visible = filteredProducts.slice(start, end);
-    const $list = $('#prod-list').empty();
+    const $list = $('#product-list').empty();
 
     $.each(visible, function (i, product) {
-      const oldPrice = product.price ? `<span class="old-price">$${product.price.toFixed(2)}</span>` : '';
-      const newPrice = product.new_price ? `<span class="new-price">$${product.new_price.toFixed(2)}</span>` : '';
+      let priceHtml = '';
+      if (product.new_price) {
+        priceHtml = `<span class="old-price">$${product.price.toFixed(2)}</span><span class="new-price">$${product.new_price.toFixed(2)}</span>`;
+      } else {
+        priceHtml = `<span class="single-price">$${product.price.toFixed(2)}</span>`;
+      }
+
       let badge = '';
-      if (Array.isArray(product.flags)) {
+      if (product && Array.isArray(product.flags)) {
         badge = `<div class="badges">`;
-        product.flags.forEach(flag => {
-          badge += `<div class="badge badge-${flag}">${flag}</div>`;
+        product.flags.forEach(rawFlag => {
+          if (typeof rawFlag === 'string') {
+            const flags = rawFlag.includes(',') ? rawFlag.split(',') : [rawFlag];
+            flags.forEach(flag => {
+              flag = flag.trim();
+              if (flag) {
+                const flagText = flag.charAt(0).toUpperCase() + flag.slice(1);
+                badge += `<div class="badge badge-${flag}">${flagText}</div>`;
+              }
+            });
+          }
         });
         badge += `</div>`;
       }
+
       const card = `
         <div class="product-card">
-          <a href="${product.link}" target="_blank">
+          <a href="${product.link}" target="_blank" class="product-link">
             <img src="prod-img.jpg" alt="${product.name}">
           </a>
           <div class="product-brand">${product.brand}</div>
           <div class="product-name">${product.name}</div>
-          <div class="product-price">${oldPrice}${newPrice}</div>
+          <div class="product-price">${priceHtml}</div>
           <div class="action-buttons">
             <button class="button cart-button">Add to Cart</button>
             <button class="button quick-button">Quick View</button>
@@ -60,7 +75,7 @@ $(function () {
   function renderPagination() {
     const perPage = productsPerPage();
     const totalPages = Math.ceil(filteredProducts.length / perPage);
-    const $pagination = $('#prod-pagination').empty();
+    const $pagination = $('#product-pagination').empty();
 
     const $prev = $('<button class="pagination-button">&laquo;</button>');
     if (currentPage === 1) {
