@@ -62,7 +62,7 @@ $(function () {
     const totalPages = Math.ceil(filteredProducts.length / perPage);
     const $pagination = $('#prod-pagination').empty();
 
-    const $prev = $('<button>&laquo;</button>');
+    const $prev = $('<button class="pagination-button">&laquo;</button>');
     if (currentPage === 1) {
       $prev.prop('disabled', true).addClass('disabled');
     } else {
@@ -74,8 +74,8 @@ $(function () {
     $pagination.append($prev);
 
     for (let i = 1; i <= totalPages; i++) {
-      const $btn = $('<button>' + i + '</button>');
-      if (i === currentPage) $btn.addClass('page-active');
+      const $btn = $('<button class="pagination-button">' + i + '</button>');
+      if (i === currentPage) $btn.addClass('active');
       $btn.on('click', function () {
         currentPage = i;
         makePage()
@@ -83,7 +83,7 @@ $(function () {
       $pagination.append($btn);
     }
 
-    const $next = $('<button>&raquo;</button>');
+    const $next = $('<button class="pagination-button">&raquo;</button>');
     if (currentPage === totalPages) {
       $next.prop('disabled', true).addClass('disabled');
     } else {

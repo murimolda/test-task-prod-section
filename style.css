@@ -98,3 +98,99 @@ p {
   margin-block-start: 0;
   margin-block-end: 0;
 }
+
+:root {
+  --font-family: "Montserrat";
+  --main-color: #000;
+  --main-bg: #ffffff;
+  --active-bg: #00a9ce;
+  --border-color: #b4b4b4;
+  --old-price-color: #a1a1a1;
+  --new-price-color: #00a9ce;
+  --search-bg: ##00a9ce;
+  --search-border-color: #dbdbdb;
+  --search-pl-color: #b6b6b6;
+  --search-icon-color: #959595;
+  --quick-button-color: #1d70bf;
+  --quick-button-border: #00a9ce;
+  --cart-button-bg: linear-gradient(53deg, #00a9cd 0%, #006ed6 100%);
+}
+
+body {
+  width: 100%;
+  background: var(--main-bg);
+  color: var(--main-color);
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.prod-container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-top: 160px;
+  padding-bottom: 75px;
+}
+
+.prod-top-bar {
+}
+.category-title {
+  font-size: 36px;
+  line-height: 49px;
+  font-weight: 700;
+  text-align: center;
+}
+.view-toggle {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  row-gap: 7px;
+  width: max-content;
+  padding: 5px;
+  height: 47px;
+  border-radius: 5px;
+  border: 3px solid var(--active-bg);
+}
+.view-button {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 136px;
+  height: 32px;
+  border-radius: 5px;
+  border: none;
+  background: var(--main-bg);
+  color: var(--main-color);
+  font-size: 24px;
+}
+
+.icon-line {
+}
+.active {
+}
+.icon-grid {
+}
+.search-box {
+}
+.grid-view {
+  display: grid;
+  justify-content: space-between;
+  align-content: center;
+  grid-template-columns: repeat(4, 24%);
+}
+
+.product-card {
+  width: 100%;
+  height: auto;
+  min-height: 509px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  filter: drop-shadow(0 0 11.5px rgba(0, 0, 0, 0.25));
+}
+
+.pagination {
+}
