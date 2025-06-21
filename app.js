@@ -94,43 +94,117 @@ $(function () {
   }
 
   //Pagination rendering
+  // function renderPagination() {
+  //   const perPage = productsPerPage();
+  //   const totalPages = Math.ceil(filteredProducts.length / perPage);
+  //   const $pagination = $('#product-pagination').empty();
+
+  //   const $prev = $('<button class="pagination-button">&laquo;</button>');
+  //   if (currentPage === 1) {
+  //     $prev.prop('disabled', true).addClass('disabled');
+  //   } else {
+  //     $prev.on('click', function () {
+  //       currentPage--;
+  //       makePage()
+  //     });
+  //   }
+  //   $pagination.append($prev);
+
+  //   for (let i = 1; i <= totalPages; i++) {
+  //     const $btn = $('<button class="pagination-button">' + i + '</button>');
+  //     if (i === currentPage) $btn.addClass('active');
+  //     $btn.on('click', function () {
+  //       currentPage = i;
+  //       makePage()
+  //     });
+  //     $pagination.append($btn);
+  //   }
+
+  //   const $next = $('<button class="pagination-button">&raquo;</button>');
+  //   if (currentPage === totalPages) {
+  //     $next.prop('disabled', true).addClass('disabled');
+  //   } else {
+  //     $next.on('click', function () {
+  //       currentPage++;
+  //       makePage()
+  //     });
+  //   }
+  //   $pagination.append($next);
+  // }
+
+  //Pagination rendering with a large number of pages
   function renderPagination() {
-    const perPage = productsPerPage();
-    const totalPages = Math.ceil(filteredProducts.length / perPage);
-    const $pagination = $('#product-pagination').empty();
+  const perPage = productsPerPage();
+  const totalPages = Math.ceil(filteredProducts.length / perPage);
+  const $pagination = $('#product-pagination').empty();
 
-    const $prev = $('<button class="pagination-button">&laquo;</button>');
-    if (currentPage === 1) {
-      $prev.prop('disabled', true).addClass('disabled');
-    } else {
-      $prev.on('click', function () {
-        currentPage--;
-        makePage()
-      });
-    }
-    $pagination.append($prev);
-
-    for (let i = 1; i <= totalPages; i++) {
-      const $btn = $('<button class="pagination-button">' + i + '</button>');
-      if (i === currentPage) $btn.addClass('active');
-      $btn.on('click', function () {
-        currentPage = i;
-        makePage()
-      });
-      $pagination.append($btn);
-    }
-
-    const $next = $('<button class="pagination-button">&raquo;</button>');
-    if (currentPage === totalPages) {
-      $next.prop('disabled', true).addClass('disabled');
-    } else {
-      $next.on('click', function () {
-        currentPage++;
-        makePage()
-      });
-    }
-    $pagination.append($next);
+  const $prev = $('<button class="pagination-button">&laquo;</button>');
+  if (currentPage === 1) {
+    $prev.prop('disabled', true).addClass('disabled');
+  } else {
+    $prev.on('click', function () {
+      currentPage--;
+      makePage();
+    });
   }
+  $pagination.append($prev);
+
+  function createPageButton(page) {
+    const $btn = $('<button class="pagination-button"></button>').text(page);
+    if (page === currentPage) $btn.addClass('active');
+    $btn.on('click', function () {
+      currentPage = page;
+      makePage();
+    });
+    return $btn;
+  }
+
+  function createDots() {
+    return $('<span class="pagination-button pagination-dots">...</span>');
+  }
+
+  if (totalPages <= 6) {
+    for (let i = 1; i <= totalPages; i++) {
+      $pagination.append(createPageButton(i));
+    }
+  } else {
+
+    if (currentPage <= 3) {
+      // 1 2 3 ... last
+      for (let i = 1; i <= 3; i++) {
+        $pagination.append(createPageButton(i));
+      }
+      $pagination.append(createDots());
+      $pagination.append(createPageButton(totalPages));
+    } else if (currentPage >= totalPages - 2) {
+      // 1 ... totalPages-2 totalPages-1 totalPages
+      $pagination.append(createPageButton(1));
+      $pagination.append(createDots());
+      for (let i = totalPages - 2; i <= totalPages; i++) {
+        $pagination.append(createPageButton(i));
+      }
+    } else {
+
+      $pagination.append(createPageButton(1));
+      $pagination.append(createDots());
+      $pagination.append(createPageButton(currentPage));
+      $pagination.append(createDots());
+      $pagination.append(createPageButton(totalPages));
+    }
+  }
+
+  const $next = $('<button class="pagination-button">&raquo;</button>');
+  if (currentPage === totalPages) {
+    $next.prop('disabled', true).addClass('disabled');
+  } else {
+    $next.on('click', function () {
+      currentPage++;
+      makePage();
+    });
+  }
+  $pagination.append($next);
+}
+
 
   $(window).on('resize', function () {
     makePage()

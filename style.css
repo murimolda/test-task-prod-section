@@ -473,10 +473,8 @@ body {
   .product-container {
     width: 100%;
     max-width: 900px;
-    margin: 0 auto;
-    padding-top: 160px;
-    padding-bottom: 75px;
   }
+
   .product-top-bar {
     flex-wrap: wrap;
     justify-content: start;
@@ -512,6 +510,10 @@ body {
 }
 
 @media screen and (max-width: 700px) {
+  .product-container {
+    padding-top: 75px;
+  }
+
   .search-box {
     width: 80%;
     min-width: 325px;
@@ -558,5 +560,44 @@ body {
   .action-buttons .button {
     width: 144px;
     font-size: 20px;
+  }
+
+  .pagination-button {
+    width: 42px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .search-box {
+    width: 90%;
+    min-width: auto;
+  }
+
+  .search-box input {
+    width: calc(100% - 35px);
+    min-width: auto;
+  }
+
+  .product-link {
+    display: block;
+    width: 220px;
+    margin: 0 auto;
+  }
+
+  .product-link img {
+    width: 220px;
+    height: auto;
+  }
+  .pagination {
+    height: 38px;
+    border-radius: 4px;
+    background-color: var(--main-bg);
+    border: 2px solid var(--border-color);
+    margin: 0 auto;
+  }
+
+  .pagination-button {
+    width: 38px;
+    height: 34px;
   }
 }
