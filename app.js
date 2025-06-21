@@ -8,11 +8,13 @@ $(function () {
   let filteredProducts = [];
   let currentPage = 1;
 
+  // Page rendering
   function makePage() {
     renderProducts();
     renderPagination();
   }
 
+  // Getting product data from json file
   function loadProducts() {
     $.getJSON('https://raw.githubusercontent.com/murimolda/product-data/refs/heads/main/products.json', function (data) {
       allProducts = data.products;
@@ -20,6 +22,8 @@ $(function () {
       makePage()
     });
   }
+
+  // Rendering product cards
   function renderProducts() {
     const perPage = productsPerPage();
     const start = (currentPage - 1) * perPage;
@@ -72,6 +76,7 @@ $(function () {
     });
   }
 
+  //Pagination rendering
   function renderPagination() {
     const perPage = productsPerPage();
     const totalPages = Math.ceil(filteredProducts.length / perPage);
@@ -116,4 +121,20 @@ $(function () {
 
 
   loadProducts();
+
+  //Switching grid and linear view for product cards container
+  $('#grid-view').click(function() {
+    $('#product-list').removeClass("list-view").addClass("grid-view");
+    $('#line-view').toggleClass(active);
+    $('#grid-view').toggleClass(active);
+  });
+
+  $('#line-view').click(function() {
+    $('#product-list').removeClass("grid-view").addClass("list-view");
+    $('#line-view').toggleClass(className);
+    $('#grid-view').toggleClass(className);
+  });
+
+
+
 });

@@ -186,6 +186,9 @@ body {
 }
 
 .search-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 325px;
   height: 46px;
   background-color: var(--search-bg);
@@ -193,10 +196,12 @@ body {
 }
 
 .search-box input {
-  width: 270px;
-  height: 46px;
+  width: 260px;
+  height: 32px;
+  margin: 5px 10px;
   background-color: transparent;
   border: none;
+  font-size: 1em;
 }
 
 .search-box input:hover {
@@ -205,10 +210,16 @@ body {
 }
 
 .search-box button {
-  width: 35px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
+  margin: 5px 10px;
   background-color: transparent;
   border: none;
+}
+
+.search-box button svg {
+  width: 26px;
+  height: 26px;
 }
 
 .grid-view {
@@ -217,6 +228,7 @@ body {
   align-content: center;
   grid-template-columns: repeat(4, 24%);
   row-gap: 1.5em;
+  margin-bottom: 120px;
 }
 
 .product-card {
